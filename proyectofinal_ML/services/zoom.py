@@ -1,28 +1,21 @@
 import pyautogui as py
-from selenium import webdriver 
+import webbrowser
 import time
 
-def connect_zoom(meet_code, passcode):
-    driver = webdriver.Chrome('C://Programs File/chorme/chromedriver.exe')
-    driver.get('https://zoom.us/join')
+def connect_zoom(meet_code, password):
+    # Example = https://us04web.zoom.us/j/77943644084?pwd=TWI0WS91b3dqUG1Jd1hUQkFzYTh0QT09
+    webbrowser.open(f"https://zoom.us/j/{meet_code}?pwd={password}")
+    # Cambiar el tiempo de espera dependiendo del rendimiento de tu maquina.
+    time.sleep(8)
+    py.press('c')
+    time.sleep(1)
+    py.write("Bienvenidos a la clase, comenzamos en segundos!!!")
+    time.sleep(1)
+    py.press("enter")
       
-    time.slee(5)
- 
-    driver.find_element_by_xpath("//input[@id='join-confno']").send_keys(meet_code)
- 
-    time.sleep(2)
-    driver.find_element_by_xpath("//a[@id='btnSubmit']").click()
-    time.sleep(5)
- 
-    enter_passcode = py.locateCenterOnScreen('passc.png')
-    py.moveTo(enter_passcode)
-    py.click()
-    py.write(passcode)
- 
-    time.sleep(5)
-    btn = py.locateCenterOnScreen("join.png")
-    py.moveTo(btn)
-    py.click()
-
 def disconnect_zoom():
-    pass
+    py.press('q')
+    time.sleep(1)
+    py.moveTo(683,362)
+    time.sleep(1)
+    py.click()
