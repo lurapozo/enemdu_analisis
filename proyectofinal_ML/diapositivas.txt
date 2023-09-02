@@ -1,0 +1,9 @@
+
+
+Diapositiva 1: Introducción a Arreglos de Numpy -- ¿Qué es un arreglo? -- ¿Por qué usar un arreglo?
+
+Diapositiva 2: Manipulación de Arreglos -- Indexado de Arreglos -- Selección de Elementos
+
+Diapositiva 3: Operaciones con Arreglos -- Operaciones Aritméticas -- Operaciones Lógicas
+
+Diapositiva 4: Conclusiones -- Ventajas de los Arreglos de Numpy -- Aplicaciones de los Arreglos de Numpy
