@@ -5,12 +5,15 @@ def explicar(gpt_prompt: str) -> str:
         temperature=0.8,
         max_tokens=256,
         top_p=1.0,
-        frequency_penalty=0.0,
+        frequency_penalty=0.5,
         presence_penalty=0.0
     )
     f = open("./presentacion.txt", "a")
     f.write("promt: " + gpt_prompt)
+    f.write("------------------------------\n")
     f.write("completion: " + response['choices'][0]['text'])
+    f.write("------------------------------")
+    f.write("------------------------------\n")
     f.close()
     # Aqui deberia hablar, cuando termine de hablar deberia cambiar de diapositiva, quitar lo de open write y close
     return response['choices'][0]['text']
@@ -31,7 +34,7 @@ if __name__ == "__main__":
         max_tokens=256,
         top_p=1.0,
         frequency_penalty=0.0,
-        presence_penalty=0.0
+        presence_penalty=-1.0
     )
     f = open("./diapositivas.txt", "w")
     f.write(response['choices'][0]['text'])
@@ -53,10 +56,10 @@ if __name__ == "__main__":
             # Hay que ponerlo en las diapositivas
     
     for promt in promts:
-        gpt_prompt = f"Dame una version ampleada de la siguiente diapositiva: \n{promt}"
+        gpt_prompt = f"Dame una version explicada de la siguiente diapositiva: \n{promt}"
         explicar(gpt_prompt)
     
     codigo = explicar("solo muestra un codigo de python que use numpy. No escribas nada mas")
     # Lo que esta en codigo debe ser una diapositiva extra, la ultima, en la que se explica un ejemplo de un codigo con arreglos
-    explicar(f"Explica el siguiente codigo, linea por linea {codigo}") # Explica el codigo
+    explicar(f"Explica el siguiente codigo, linea por linea, sin decir las lineas del codigo {codigo}") # Explica el codigo
     # Aqui deberia haber una parte extra de preguntas y respuestas, si se puede
