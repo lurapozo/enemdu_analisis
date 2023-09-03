@@ -1,29 +1,40 @@
 import pyautogui as py
-import time
 
+from time import sleep
 from selenium import webdriver
-from selenium.webdriver.common.alert import Alert
+from selenium.webdriver.common.keys import Keys
 
-driver = webdriver.Chrome()
+driver = webdriver.Chrome(executable_path = "C:\selenium_drivers\chromedriver" )
+driver.maximize_window()
 
 def connect_zoom(meet_code, password):
-    # Example = https://us04web.zoom.us/j/77943644084?pwd=TWI0WS91b3dqUG1Jd1hUQkFzYTh0QT09
     driver.get(f"https://zoom.us/j/{meet_code}?pwd={password}")
-    driver.maximize_window()
-    time.sleep(2)
-    alert = Alert(driver)
-    alert.dismiss()
-    # Cambiar el tiempo de espera dependiendo del rendimiento de tu maquina.
-    time.sleep(8)
-    py.press('c')
-    time.sleep(1)
-    py.write("Bienvenidos a la clase, comenzamos en segundos!!!")
-    time.sleep(1)
+    sleep(2)
+    py.press("left")
+    sleep(1)
     py.press("enter")
-      
+    sleep(2)
+    driver.close()
+    sleep(10)
+    print("En Zoom")
+    # share_screen()
+    sleep(1)
+    write_chat()
+    sleep(1)
+    disconnect_zoom()
+    
 def disconnect_zoom():
-    py.press('q')
-    time.sleep(1)
-    py.moveTo(683,362)
-    time.sleep(1)
-    py.click()
+    print("Cerrando")
+    py.hotkey('alt', 'Q')
+
+def share_screen():
+    py.hotkey('alt', 'S')
+    sleep(1)
+    py.press('enter')
+
+def write_chat():
+    py.hotkey('alt', 'H')
+    sleep(1)
+    py.write("Bienvenidos a la clase, comenzamos en segundos!!!")
+    sleep(1)
+    py.press("enter")
