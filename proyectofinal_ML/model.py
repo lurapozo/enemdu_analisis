@@ -1,6 +1,6 @@
 from services.text_speech import text_to_speech
 
-def explicar(gpt_prompt: str) -> str:
+def explicar(gpt_prompt: str):
     response = openai.Completion.create(
         engine="text-davinci-003",
         prompt=gpt_prompt,
