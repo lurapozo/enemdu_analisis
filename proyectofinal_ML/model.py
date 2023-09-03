@@ -18,9 +18,19 @@ def explicar(gpt_prompt: str) -> str:
     f.write("------------------------------")
     f.write("------------------------------\n")
     f.close()
+
+def codigo(gpt_prompt: str) -> str:
+    response = openai.Completion.create(
+        engine="text-davinci-003",
+        prompt=gpt_prompt,
+        temperature=0.8,
+        max_tokens=256,
+        top_p=1.0,
+        frequency_penalty=0.5,
+        presence_penalty=0.0
+    )
     # Aqui deberia hablar, cuando termine de hablar deberia cambiar de diapositiva, quitar lo de open write y close
     return response['choices'][0]['text']
-
 
 if __name__ == "__main__":
     import openai
@@ -43,9 +53,11 @@ if __name__ == "__main__":
     f.write(response['choices'][0]['text'])
     f.close()
     
-    f = open("./diapositivas.txt", "r")
+    f = open("./diapositivas.txt", "r+")
     presentation = f.read()
     presentation = re.split("Diapositiva ", presentation, flags=re.IGNORECASE)
+    codigo = codigo("solo muestra un codigo de python que use numpy. No escribas nada mas")
+    f.write("\nDiapositiva 5: Ejemplo de Código con arreglos de numpy --" + codigo)
     f.close()
     promts = []
     #Creacion de diapositivas
@@ -55,14 +67,13 @@ if __name__ == "__main__":
             promt = promt[1]
             promts.append(promt)
             mostrar = promt.split('--')
-            # El primero es el titulo, el resto los subtitulos
+            # Mostrar es una lista que contiene los elementos de 1 diapositiva
+            # El primer elemento es el titulo, el resto los subtitulos
             # Hay que ponerlo en las diapositivas
-    
+
     for promt in promts:
         gpt_prompt = f"Dame una version explicada de la siguiente diapositiva: \n{promt}"
         explicar(gpt_prompt)
-    
-    codigo = explicar("solo muestra un codigo de python que use numpy. No escribas nada mas")
     # Lo que esta en codigo debe ser una diapositiva extra, la ultima, en la que se explica un ejemplo de un codigo con arreglos
     explicar(f"Explica el siguiente codigo, linea por linea, sin decir las lineas del codigo {codigo}") # Explica el codigo
     # Aqui deberia haber una parte extra de preguntas y respuestas, si se puede

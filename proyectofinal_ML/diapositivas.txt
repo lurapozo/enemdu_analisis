@@ -1,9 +1,16 @@
+ 
+
+Diapositiva 1: Introducción a Arreglos en Numpy -- Conceptos Básicos -- Ventajas 
+Diapositiva 2: Creación de Arreglos en Numpy -- Creación con números -- Creación con secuencias 
+Diapositiva 3: Acceso a Elementos de un Arreglo -- Acceso a un Elemento -- Acceso a un Subconjunto de Elementos 
+Diapositiva 4: Operaciones con Arreglos -- Operaciones Matemáticas -- Funciones y Métodos Numpy
+Diapositiva 5: Ejemplo de Código con arreglos de numpy --
 
 
-Diapositiva 1: Introducción a Arreglos en Numpy -- Introducción a Numpy -- Contenido del Arreglo
+import numpy as np 
 
-Diapositiva 2: Crear Arreglos en Numpy -- Crear Arreglos de Diferentes Formas -- Generar Arreglos a Partir de Datos
+a = np.array([[1,2,3],[4,5,6],[7,8,9]]) 
+b = np.array([[9,8,7],[6,5,4],[3,2,1]]) 
 
-Diapositiva 3: Indexación, corte y operaciones en los Arreglos de Numpy -- Indexación y corte -- Operaciones sobre los Arreglos
-
-Diapositiva 4: Resumen de los Arreglos en Numpy -- Resumen de los Principales Conceptos -- Ventajas de los Arreglos en Numpy
+c = a + b 
+print(c)
