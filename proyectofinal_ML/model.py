@@ -1,8 +1,8 @@
 from services.text_speech import text_to_speech
 from services.powerpoint import gen_presentacion
+from pptx import Presentation
 
 def explicar(gpt_prompt: str):
-    pos = 1
     response = openai.Completion.create(
         engine="text-davinci-003",
         prompt=gpt_prompt,
@@ -16,11 +16,9 @@ def explicar(gpt_prompt: str):
     f.write("promt: " + gpt_prompt)
     f.write("------------------------------\n")
     f.write("completion: " + response['choices'][0]['text'])
-    gen_presentacion(pos,'Prueba',response['choices'][0]['text'])
     text_to_speech(response['choices'][0]['text'])
     f.write("------------------------------")
     f.write("------------------------------\n")
-    pos+=1
     f.close()
 
 def codigo(gpt_prompt: str) -> str:
@@ -33,13 +31,12 @@ def codigo(gpt_prompt: str) -> str:
         frequency_penalty=0.5,
         presence_penalty=0.0
     )
-    # Aqui deberia hablar, cuando termine de hablar deberia cambiar de diapositiva, quitar lo de open write y close
     return response['choices'][0]['text']
 
 if __name__ == "__main__":
     import openai
     import re
-    API_KEY = "" # Ingresar API_KEY
+    API_KEY = "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" # Ingresar API_KEY
     openai.api_key = API_KEY
     
     #Pedirle al GPT que cree las diapositivas con un formato
@@ -66,20 +63,24 @@ if __name__ == "__main__":
     promts = []
     #Creacion de diapositivas
     diapositivas = []
+    pos = 0
+    prs = Presentation()
+    gen_presentacion(prs, pos,'','')
     for diapo in presentation:
         if len(diapo) > 4:
+            pos += 1
             promt = re.split("[0-9]*:", diapo)
             promt = promt[1]
             promts.append(promt)
             mostrar = promt.split('--')
+            gen_presentacion(prs, pos, mostrar[0],'\n'.join(mostrar[1:]))
             diapositivas.append(mostrar)
-            # Mostrar es una lista que contiene los elementos de 1 diapositiva
-            # El primer elemento es el titulo, el resto los subtitulos
-            # Hay que ponerlo en las diapositivas
 
+    diapositivas.append(['Ejemplo de Código con arreglos de numpy', codigo])
+    gen_presentacion(prs, 1,'Ejemplo de Código con arreglos de numpy',codigo)
+    print(diapositivas)
     for promt in promts:
         gpt_prompt = f"Dame una version explicada de la siguiente diapositiva: \n{promt}"
         explicar(gpt_prompt)
-    # Lo que esta en codigo debe ser una diapositiva extra, la ultima, en la que se explica un ejemplo de un codigo con arreglos
     explicar(f"Explica el siguiente codigo, linea por linea, sin decir las lineas del codigo pero sí el número de la línea (no cuentes las lineas con espacios): {codigo}") # Explica el codigo
     # Aqui deberia haber una parte extra de preguntas y respuestas, si se puede
