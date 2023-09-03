@@ -1,3 +1,5 @@
+from services.text_speech import text_to_speech
+
 def explicar(gpt_prompt: str) -> str:
     response = openai.Completion.create(
         engine="text-davinci-003",
@@ -12,6 +14,7 @@ def explicar(gpt_prompt: str) -> str:
     f.write("promt: " + gpt_prompt)
     f.write("------------------------------\n")
     f.write("completion: " + response['choices'][0]['text'])
+    text_to_speech(response['choices'][0]['text'])
     f.write("------------------------------")
     f.write("------------------------------\n")
     f.close()

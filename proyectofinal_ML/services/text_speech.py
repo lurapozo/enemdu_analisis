@@ -3,10 +3,14 @@ import speech_recognition as sr
 
 # TTS
 engine = pyttsx3.init()
-# voices = engine.getProperty('voices')
-# for voice in voices:
+#voices = engine.getProperty('voices')
+#for voice in voices:
 #    print(voice)
-engine.setProperty('voice', 'spanish+f1')
+
+#Windows
+engine.setProperty('voice','HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_ES-MX_SABINA_11.0')#Paquete Espanol-Mexico
+#Linux
+#engine.setProperty('voice', 'spanish+f1')
 engine.setProperty('rate', 145)
 
 # STT
@@ -17,6 +21,7 @@ listener = sr.Recognizer()
 def text_to_speech(text):
      engine.say(text)
      engine.runAndWait()
+
 
 def seepch_to_text():
      try:
