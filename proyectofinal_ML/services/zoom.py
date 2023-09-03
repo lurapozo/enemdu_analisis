@@ -4,7 +4,7 @@ from time import sleep
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
-driver = webdriver.Chrome(executable_path = "C:\selenium_drivers\chromedriver" )
+driver = webdriver.Chrome()
 driver.maximize_window()
 
 def connect_zoom(meet_code, password):

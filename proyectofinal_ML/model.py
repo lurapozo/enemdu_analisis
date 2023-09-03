@@ -1,6 +1,8 @@
 from services.text_speech import text_to_speech
+from services.powerpoint import gen_presentacion
 
 def explicar(gpt_prompt: str):
+    pos = 1
     response = openai.Completion.create(
         engine="text-davinci-003",
         prompt=gpt_prompt,
@@ -14,9 +16,11 @@ def explicar(gpt_prompt: str):
     f.write("promt: " + gpt_prompt)
     f.write("------------------------------\n")
     f.write("completion: " + response['choices'][0]['text'])
+    gen_presentacion(pos,'Prueba',response['choices'][0]['text'])
     text_to_speech(response['choices'][0]['text'])
     f.write("------------------------------")
     f.write("------------------------------\n")
+    pos+=1
     f.close()
 
 def codigo(gpt_prompt: str) -> str:
