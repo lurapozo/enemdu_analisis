@@ -60,17 +60,19 @@ if __name__ == "__main__":
     f = open("./diapositivas.txt", "r+")
     presentation = f.read()
     presentation = re.split("Diapositiva ", presentation, flags=re.IGNORECASE)
-    codigo = codigo("solo muestra un codigo de python que use numpy. No escribas nada mas")
+    codigo = codigo("solo muestra un codigo de python que use numpy donde se realize operaciones aritmeticas entre arreglos. No escribas nada mas")
     f.write("\nDiapositiva 5: Ejemplo de Código con arreglos de numpy --" + codigo)
     f.close()
     promts = []
     #Creacion de diapositivas
+    diapositivas = []
     for diapo in presentation:
         if len(diapo) > 4:
             promt = re.split("[0-9]*:", diapo)
             promt = promt[1]
             promts.append(promt)
             mostrar = promt.split('--')
+            diapositivas.append(mostrar)
             # Mostrar es una lista que contiene los elementos de 1 diapositiva
             # El primer elemento es el titulo, el resto los subtitulos
             # Hay que ponerlo en las diapositivas
@@ -79,5 +81,5 @@ if __name__ == "__main__":
         gpt_prompt = f"Dame una version explicada de la siguiente diapositiva: \n{promt}"
         explicar(gpt_prompt)
     # Lo que esta en codigo debe ser una diapositiva extra, la ultima, en la que se explica un ejemplo de un codigo con arreglos
-    explicar(f"Explica el siguiente codigo, linea por linea, sin decir las lineas del codigo {codigo}") # Explica el codigo
+    explicar(f"Explica el siguiente codigo, linea por linea, sin decir las lineas del codigo pero sí el número de la línea (no cuentes las lineas con espacios): {codigo}") # Explica el codigo
     # Aqui deberia haber una parte extra de preguntas y respuestas, si se puede
