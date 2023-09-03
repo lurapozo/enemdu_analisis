@@ -17,15 +17,18 @@ def connect_zoom(meet_code, password):
     driver.close()
     sleep(10)
     print("En Zoom")
+    sleep(1)
+    py.getWindowsWithTitle("Zoom Meeting")[0].maximize()
     # share_screen()
-    sleep(1)
-    write_chat()
-    sleep(1)
-    disconnect_zoom()
+    # sleep(1)
+    # write_chat()
+    # sleep(1)
+    # disconnect_zoom()
     
 def disconnect_zoom():
     print("Cerrando")
-    py.hotkey('alt', 'Q')
+    py.hotkey('alt', 'q')
+    py.press('enter')
 
 def share_screen():
     py.hotkey('alt', 'S')
