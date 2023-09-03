@@ -36,7 +36,7 @@ def codigo(gpt_prompt: str) -> str:
 if __name__ == "__main__":
     import openai
     import re
-    API_KEY = "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" # Ingresar API_KEY
+    API_KEY = "" # Ingresar API_KEY
     openai.api_key = API_KEY
     
     #Pedirle al GPT que cree las diapositivas con un formato
