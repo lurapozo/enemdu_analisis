@@ -81,7 +81,7 @@ if __name__ == "__main__":
     gen_presentacion(prs, 1,'Ejemplo de Código con arreglos de numpy',codigo)
     print(diapositivas)
     # Conectar Zoom
-    connect_zoom()
+    connect_zoom("875 214 5082", "6C2Txy")
     sleep(2)
     # Cargar Presentacion
     init_presentetation("test.pptx")
