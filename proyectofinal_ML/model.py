@@ -2,6 +2,10 @@ from services.text_speech import *
 from services.powerpoint import *
 from services.zoom import *
 from pptx import Presentation
+import time
+import openai
+import re
+
 
 def explicar(gpt_prompt: str):
     response = openai.Completion.create(
@@ -29,8 +33,7 @@ def codigo(gpt_prompt: str) -> str:
     return response['choices'][0]['text']
 
 if __name__ == "__main__":
-    import openai
-    import re
+
     API_KEY = "" # Ingresar API_KEY
     openai.api_key = API_KEY
     
@@ -94,16 +97,18 @@ if __name__ == "__main__":
     # Aqui deberia haber una parte extra de preguntas y respuestas, si se puede
     end_presentation()
     # Experimental
-    mensaje = "Comenzar"
+    mensaje = None
     num_preguntas = 0
     text_to_speech("Para finalizar la clase, tienen algunas duda, queja, inconformidad o pregunta referente a la clase?")
-    while len(mensaje) != 0 or mensaje == "no" or num_preguntas > 2:
+    while num_preguntas > 1 or mensaje is None:
         mensaje = speech_to_text()
-        if len(mensaje > 0 ):
+        print("hoa", mensaje)
+        if mensaje is not None:
             explicar(mensaje)
             num_preguntas += 1
+            text_to_speech("Siguiente pregunta o no hay mas dudas?")
+            mensaje = None
         sleep(1)
-        text_to_speech("Siguiente pregunta o no hay mas dudas?")
     sleep(1)
     stop_share_screen()
     sleep(1)
