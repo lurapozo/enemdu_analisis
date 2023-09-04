@@ -23,7 +23,7 @@ def text_to_speech(text):
      engine.runAndWait()
 
 
-def seepch_to_text():
+def speech_to_text():
      try:
           with sr.Microphone() as source:
                print("Escuchando...")

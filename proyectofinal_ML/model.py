@@ -1,4 +1,4 @@
-from services.text_speech import text_to_speech
+from services.text_speech import *
 from services.powerpoint import *
 from services.zoom import *
 from pptx import Presentation
@@ -81,6 +81,7 @@ if __name__ == "__main__":
     gen_presentacion(prs, 1,'Ejemplo de Código con arreglos de numpy',codigo)
     print(diapositivas)
     # Conectar Zoom
+    # Nota: Debes ser el link con el enlace tu cuenta, si ingresas otro link y la reunion no esta habilitada. Se caera el programa
     connect_zoom("875 214 5082", "6C2Txy")
     sleep(2)
     write_chat("Bienvenidos a la clase, comenzamos en segundos en 3s !!!")
@@ -97,3 +98,13 @@ if __name__ == "__main__":
     change_slide()
     explicar(f"Explica el siguiente codigo, linea por linea, sin decir las lineas del codigo pero sí el número de la línea (no cuentes las lineas con espacios): {codigo}") # Explica el codigo
     # Aqui deberia haber una parte extra de preguntas y respuestas, si se puede
+    end_presentation()
+    # Experimental
+    # mensaje = "Comenzar"
+    # text_to_speech("Para finalizar la clase, tienen algunas duda, queja, inconformidad o pregunta referente a la clase?")
+    # while len(mensaje) != 0 or mensaje == "no":
+    #     mensaje = speech_to_text()
+    #     if len(mensaje > 0 ):
+    #         gpt_prompt(mensaje)
+    #     sleep(1)
+    #     text_to_speech("Siguiente pregunta o no hay mas dudas?")

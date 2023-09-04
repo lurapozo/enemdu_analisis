@@ -3,9 +3,6 @@ import os
 import time
 from pptx.util import Inches,Pt
 
-
-
-
 def gen_presentacion(prs, pos, titulo, contenido):
 
     if pos == 0:
@@ -27,7 +24,6 @@ def gen_presentacion(prs, pos, titulo, contenido):
 
         tf = body_shape.text_frame
         tf.text = contenido
-
 
     prs.save('test.pptx')
 
