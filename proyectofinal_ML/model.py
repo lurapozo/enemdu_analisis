@@ -13,14 +13,8 @@ def explicar(gpt_prompt: str):
         frequency_penalty=0.5,
         presence_penalty=0.0
     )
-    f = open("./presentacion.txt", "a")
-    f.write("promt: " + gpt_prompt)
-    f.write("------------------------------\n")
-    f.write("completion: " + response['choices'][0]['text'])
     text_to_speech(response['choices'][0]['text'])
-    f.write("------------------------------")
-    f.write("------------------------------\n")
-    f.close()
+
 
 def codigo(gpt_prompt: str) -> str:
     response = openai.Completion.create(
@@ -101,11 +95,13 @@ if __name__ == "__main__":
     end_presentation()
     # Experimental
     mensaje = "Comenzar"
+    num_preguntas = 0
     text_to_speech("Para finalizar la clase, tienen algunas duda, queja, inconformidad o pregunta referente a la clase?")
-    while len(mensaje) != 0 or mensaje == "no":
+    while len(mensaje) != 0 or mensaje == "no" or num_preguntas > 2:
         mensaje = speech_to_text()
         if len(mensaje > 0 ):
-            gpt_prompt(mensaje)
+            explicar(mensaje)
+            num_preguntas += 1
         sleep(1)
         text_to_speech("Siguiente pregunta o no hay mas dudas?")
     sleep(1)
