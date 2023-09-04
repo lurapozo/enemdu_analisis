@@ -27,6 +27,7 @@ def speech_to_text():
      try:
           with sr.Microphone() as source:
                print("Escuchando...")
+               listener.adjust_for_ambient_noise(source, duration=0.2)
                pc = listener.listen(source)
                rec = listener.recognize_google(pc)
                rec = rec.lower()
