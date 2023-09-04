@@ -1,4 +1,5 @@
 import pyautogui as py
+import subprocess
 
 from time import sleep
 from selenium import webdriver
@@ -8,6 +9,9 @@ driver = webdriver.Chrome()
 driver.maximize_window()
 
 def connect_zoom(meet_code, password):
+    # Se debe tener el client de zoom abierto en segundo plano
+    #subprocess.Popen(r"C:\Program Files\Zoom\Zoom.exe")
+    # sleep(2)
     driver.get(f"https://zoom.us/j/{meet_code}?pwd={password}")
     sleep(2)
     py.press("left")
@@ -35,9 +39,9 @@ def share_screen():
     sleep(1)
     py.press('enter')
 
-def write_chat():
+def write_chat(text):
     py.hotkey('alt', 'H')
     sleep(1)
-    py.write("Bienvenidos a la clase, comenzamos en segundos!!!")
+    py.write(text)
     sleep(1)
     py.press("enter")

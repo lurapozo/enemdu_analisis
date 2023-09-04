@@ -83,6 +83,10 @@ if __name__ == "__main__":
     # Conectar Zoom
     connect_zoom("875 214 5082", "6C2Txy")
     sleep(2)
+    write_chat("Bienvenidos a la clase, comenzamos en segundos en 3s !!!")
+    sleep(3)
+    share_screen()
+    sleep(2)
     # Cargar Presentacion
     init_presentetation("test.pptx")
     sleep(2)
