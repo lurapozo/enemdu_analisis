@@ -108,5 +108,8 @@ if __name__ == "__main__":
             gpt_prompt(mensaje)
         sleep(1)
         text_to_speech("Siguiente pregunta o no hay mas dudas?")
+    sleep(1)
+    stop_share_screen()
+    sleep(1)
     disconnect_zoom()
     print("Fin")
