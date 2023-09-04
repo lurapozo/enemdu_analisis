@@ -34,6 +34,7 @@ def gen_presentacion(prs, pos, titulo, contenido):
 def init_presentetation(name):
     os.startfile(name)
     time.sleep(3)
+    py.getWindowsWithTitle("PowerPoint")[0].maximize()
     py.press("f5")
     time.sleep(2)
 
