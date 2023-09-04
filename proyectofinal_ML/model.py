@@ -1,5 +1,6 @@
 from services.text_speech import text_to_speech
-from services.powerpoint import gen_presentacion
+from services.powerpoint import *
+from services.zoom import *
 from pptx import Presentation
 
 def explicar(gpt_prompt: str):
@@ -79,8 +80,16 @@ if __name__ == "__main__":
     diapositivas.append(['Ejemplo de Código con arreglos de numpy', codigo])
     gen_presentacion(prs, 1,'Ejemplo de Código con arreglos de numpy',codigo)
     print(diapositivas)
+    # Conectar Zoom
+    connect_zoom()
+    sleep(2)
+    # Cargar Presentacion
+    init_presentetation()
+    sleep(2)
     for promt in promts:
         gpt_prompt = f"Dame una version explicada de la siguiente diapositiva: \n{promt}"
+        change_slide()
         explicar(gpt_prompt)
+    change_slide()
     explicar(f"Explica el siguiente codigo, linea por linea, sin decir las lineas del codigo pero sí el número de la línea (no cuentes las lineas con espacios): {codigo}") # Explica el codigo
     # Aqui deberia haber una parte extra de preguntas y respuestas, si se puede
