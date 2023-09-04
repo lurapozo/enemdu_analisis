@@ -84,7 +84,7 @@ if __name__ == "__main__":
     connect_zoom()
     sleep(2)
     # Cargar Presentacion
-    init_presentetation()
+    init_presentetation("test.pptx")
     sleep(2)
     for promt in promts:
         gpt_prompt = f"Dame una version explicada de la siguiente diapositiva: \n{promt}"
