@@ -100,11 +100,13 @@ if __name__ == "__main__":
     # Aqui deberia haber una parte extra de preguntas y respuestas, si se puede
     end_presentation()
     # Experimental
-    # mensaje = "Comenzar"
-    # text_to_speech("Para finalizar la clase, tienen algunas duda, queja, inconformidad o pregunta referente a la clase?")
-    # while len(mensaje) != 0 or mensaje == "no":
-    #     mensaje = speech_to_text()
-    #     if len(mensaje > 0 ):
-    #         gpt_prompt(mensaje)
-    #     sleep(1)
-    #     text_to_speech("Siguiente pregunta o no hay mas dudas?")
+    mensaje = "Comenzar"
+    text_to_speech("Para finalizar la clase, tienen algunas duda, queja, inconformidad o pregunta referente a la clase?")
+    while len(mensaje) != 0 or mensaje == "no":
+        mensaje = speech_to_text()
+        if len(mensaje > 0 ):
+            gpt_prompt(mensaje)
+        sleep(1)
+        text_to_speech("Siguiente pregunta o no hay mas dudas?")
+    disconnect_zoom()
+    print("Fin")
