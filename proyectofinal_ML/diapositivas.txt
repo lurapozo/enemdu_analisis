@@ -1,22 +1,9 @@
 
 
-Diapositiva 1: IntroducciÃ³n a Arreglos de Numpy -- Â¿QuÃ© son arreglos de Numpy? -- Â¿Para quÃ© sirven los arreglos de Numpy?
+Diapositiva 1: Introducción a arreglos en NumPy -- ¿Qué es NumPy? -- ¿Por qué usar NumPy?
 
-Diapositiva 2: Uso de Arreglos de Numpy -- CreaciÃ³n de arreglos -- Operaciones con Arreglos
+Diapositiva 2: Creación de arreglos en NumPy -- ¿Cómo se crean arreglos? -- ¿Cómo se indexan arreglos?
 
-Diapositiva 3: Funciones de Arreglos de Numpy -- Funciones de ManipulaciÃ³n de Arreglos -- Funciones de Operaciones MatemÃ¡ticas
+Diapositiva 3: Operaciones en arreglos de NumPy -- ¿Qué tipos de operaciones se pueden realizar? -- ¿Cómo se acceden a los elementos?
 
-Diapositiva 4: Aplicaciones de Arreglos de Numpy -- RepresentaciÃ³n de Matrices -- Operaciones con Matrices -- Aplicaciones en Machine Learning
-Diapositiva 5: Ejemplo de CÃ³digo con arreglos de numpy --
-
-import numpy as np
-
-# Suma de dos arreglos
-arr1 = np.array([7, 8, 9]) 
-arr2 = np.array([10, 11, 12]) 
-  
-# Sumar los dos arreglos 
-suma_arr = arr1 + arr2 
-  
-# Mostrar el resultado 
-print(suma_arr)
+Diapositiva 4: Resumen -- ¿Por qué usar NumPy? -- ¿Qué beneficios ofrece NumPy? -- ¿Cómo se crean, indexan y operan arreglos?

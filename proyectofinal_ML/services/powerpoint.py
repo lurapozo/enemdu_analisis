@@ -25,8 +25,15 @@ def gen_presentacion(prs, pos, titulo, contenido):
         tf = body_shape.text_frame
         tf.text = contenido
 
-    prs.save('test.pptx')
+    prs.save("clase.pptx")
 
+def gen_img(prs, img_path):
+    blank_slide_layout = prs.slide_layouts[6]
+    slide = prs.slides.add_slide(blank_slide_layout)
+    left = Inches(0.3)
+    top = Inches(0.5)
+    pic = slide.shapes.add_picture(img_path, left, top)
+    prs.save("clase.pptx")
 def init_presentetation(name):
     os.startfile(name)
     time.sleep(3)
