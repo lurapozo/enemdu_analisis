@@ -16,7 +16,7 @@ def chomp(x):
 @retry(tries=5)
 def aplicacion():
 
-    API_KEY = "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"  # Ingresar API_KEY
+    API_KEY = ""  # Ingresar API_KEY
     openai.api_key = API_KEY
 
     # Pedirle al GPT que cree las diapositivas con un formato
