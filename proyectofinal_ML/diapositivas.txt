@@ -1,9 +1,6 @@
 
 
-Diapositiva 1: Introducción a los Arreglos en Numpy -- Conceptos Básicos -- Mejoras en Rendimiento
-
-Diapositiva 2: Funciones de Numpy para Crear Arreglos -- Función Arange -- Función Linspace
-
-Diapositiva 3: Operaciones Entre Arreglos -- Suma -- Resta -- Multiplicación -- División
-
-Diapositiva 4: Ventajas de los Arreglos -- Velocidad -- Mayor Eficiencia -- Mayor Precisión
+Diapositiva 1: Introducción a los Arreglos en Numpy -- Conceptos Básicos -- Ventajas
+Diapositiva 2: Creando Arreglos con Numpy -- Funciones -- Ejemplos
+Diapositiva 3: Operaciones con Arreglos -- Aritmética -- Lógica
+Diapositiva 4: Ventajas de los Arreglos -- Comparación con Listas -- Eficiencia de Memoria

@@ -13,8 +13,8 @@ def create_ej(filename: str) -> (str, str):
         "El ejercicio debe ser de crear arreglos con np.array, np.random, np.zeros o np.reshape, y realizar varias "
         "operaciones entre arreglos (suma, resta, multiplicacion), reshape, etc. Utiliza el siguiente formato: Ejercicio: "
         "aqui va el ejercicio\nPregunta: aqui va la pregunta\nSolución: aqui va la solucion (codigo)\nSalida: aqui va la "
-        "salida\nExplicaciòn: aqui va la explicacion. No pongas comentarios dentro del codigo. Por ejemplo, no debes "
-        "poner:\na + b #Sumo dos arreglos\nDeberia ser solo el codigo, no comentario, así:\na+b")
+        "salida\nExplicaciòn: aqui va la explicacion. En la sección de salida no pongas una respuesta muy larga, que se "
+        "pasa de la diapositiva. La salida debe ser un escalar, una matriz o un arreglo de menor a 20 elementos.")
     response = ejercicios(gpt_prompt)
 
     ejercicio = re.split("Soluci[óo]n:", response, flags=re.IGNORECASE)
@@ -24,9 +24,16 @@ def create_ej(filename: str) -> (str, str):
 
     ejercicio = re.split("Ejercicio:", ejercicio[0])[1]
     text = operation[0]
+    text = re.sub(r"\#.*", " ", text)
     explicacion = operation[1]
     font_filepath = "arial.ttf"
     font_size = 20
+    val = re.split("Salida:", text, flags=re.IGNORECASE)
+    try:
+        if len(val[1]) > 30:
+            text = val[0]
+    except:
+        val = text
 
     font = ImageFont.truetype(font_filepath, size=font_size)
     box = font.getsize_multiline(text)

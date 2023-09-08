@@ -9,11 +9,16 @@ import openai
 import re
 
 def chomp(x):
-    if x.startswith("\n\n"): return x[2:]
-    if x.startswith("\n"): return x[1:]
+    if x.startswith("\n\n\n"):
+        x = x[3:]
+    if x.startswith("\n\n"):
+        x = x[2:]
+    if x.startswith("\n"):
+        x = x[1:]
     return x
 
-@retry(tries=5)
+
+@retry(tries=7)
 def aplicacion():
 
     API_KEY = ""  # Ingresar API_KEY
