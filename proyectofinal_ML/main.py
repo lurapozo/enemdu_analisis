@@ -3,6 +3,7 @@ from services.text_speech import *
 from services.powerpoint import *
 from services.promt import *
 from pptx import Presentation
+from time import sleep
 import openai
 import re
 
@@ -12,7 +13,13 @@ if __name__ == "__main__":
     openai.api_key = API_KEY
 
     # Pedirle al GPT que cree las diapositivas con un formato
-    gpt_prompt = "Hola, soy un profesor de fundamentos de programacion y necesito que generes una diapositiva , el tema es de arreglos en numpy. Necesito que escribas el texto que va a aparecer en cada diapositiva. Escribelo con el siguiente formato 'Diapositiva 1: titulo de la diapositiva -- tema 1 -- tema 2', has que tenga 4 diapositivas."
+    gpt_prompt = ("Hola, soy un profesor de fundamentos de programacion y necesito que generes una diapositiva , "
+                  "el tema es de arreglos en numpy. Necesito que escribas el texto que va a aparecer en cada "
+                  "diapositiva. Escribelo con el siguiente formato 'Diapositiva 1: titulo de la diapositiva -- tema 1 "
+                  "-- tema 2', has que tenga 4 diapositivas. La Diapositiva 1 es una introducción a los arreglos en "
+                  "numpy. La Diapositiva 2 debe ser y mostrar funciones de numpy para crear arreglos. La Diapositiva 3 " 
+                  "habla sobre realizar operaciones entre arreglos. La Diapositiva 4 habla sobre las ventajas "
+                  "de los arreglos sobre las listas. No repitas el titulo.")
     response = openai.Completion.create(
         engine="text-davinci-003",
         prompt=gpt_prompt,
@@ -44,14 +51,14 @@ if __name__ == "__main__":
             promt = promt[1]
             promts.append(promt)
             mostrar = promt.split('--')
-            gen_presentacion(prs, pos, mostrar[0], '\n'.join(mostrar[1:]))
+            gen_presentacion(prs, 1, mostrar[0], '\n'.join(mostrar[1:]))
 
     # Ejercicios
     ejercicio1, explicacion1 = create_ej("./ejercicio1.png")
-    gen_presentacion(prs, 1, '', ejercicio1)
+    gen_presentacion(prs, 2, 'Ejercicio 1', ejercicio1)
     gen_img(prs, "./ejercicio1.png")
     ejercicio2, explicacion2 = create_ej("./ejercicio2.png")
-    gen_presentacion(prs, 1, '', ejercicio2)
+    gen_presentacion(prs, 2, 'Ejercicio 2', ejercicio2)
     gen_img(prs, "./ejercicio2.png")
     # Cargar Presentacion
     init_presentetation("clase.pptx")
@@ -62,12 +69,19 @@ if __name__ == "__main__":
 
     # Ejercicios
     change_slide()
+    sleep(1)
+    text_to_speech("ejercicio 1")
     text_to_speech(ejercicio1)
     change_slide()
+    sleep(1)
     text_to_speech(explicacion1)
     change_slide()
+    sleep(1)
+    text_to_speech("ejercicio 2")
     text_to_speech(ejercicio2)
     change_slide()
+    sleep(1)
     text_to_speech(explicacion2)
-
+    sleep(1)
+    text_to_speech("Con eso terminamos la clase. Muchas gracias.")
     end_presentation()

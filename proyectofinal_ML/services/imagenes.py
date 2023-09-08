@@ -13,15 +13,15 @@ def create_ej(filename: str) -> (str, str):
         "El ejercicio debe ser de crear arreglos con np.array, np.random, np.zeros o np.reshape, y realizar varias "
         "operaciones entre arreglos (suma, resta, multiplicacion), reshape, etc. Utiliza el siguiente formato: Ejercicio: "
         "aqui va el ejercicio\nPregunta: aqui va la pregunta\nSolución: aqui va la solucion (codigo)\nSalida: aqui va la "
-        "salida\nExplicaciòn: aqui va la explicacion")
+        "salida\nExplicaciòn: aqui va la explicacion. No pongas comentarios dentro del codigo")
     response = ejercicios(gpt_prompt)
 
     ejercicio = re.split("Soluci[óo]n:", response, flags=re.IGNORECASE)
 
     operation = re.split("Explicaci[óo]n:", ejercicio[1], flags=re.IGNORECASE)
+    # ejercicio = re.sub(r'^[.\n]*E', 'E', ejercicio[0])
 
-    ejercicio = re.sub(r'^[.\n]*E', 'E', ejercicio[0])
-
+    ejercicio = re.split("Ejercicio:", ejercicio[0])[1]
     text = operation[0]
     explicacion = operation[1]
     font_filepath = "arial.ttf"

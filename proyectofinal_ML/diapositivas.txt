@@ -1,9 +1,6 @@
 
 
-Diapositiva 1: Introducción a arreglos en NumPy -- ¿Qué es NumPy? -- ¿Por qué usar NumPy?
-
-Diapositiva 2: Creación de arreglos en NumPy -- ¿Cómo se crean arreglos? -- ¿Cómo se indexan arreglos?
-
-Diapositiva 3: Operaciones en arreglos de NumPy -- ¿Qué tipos de operaciones se pueden realizar? -- ¿Cómo se acceden a los elementos?
-
-Diapositiva 4: Resumen -- ¿Por qué usar NumPy? -- ¿Qué beneficios ofrece NumPy? -- ¿Cómo se crean, indexan y operan arreglos?
+Diapositiva 1: Introducción a Arreglos en Numpy -- ¿Qué son los Arreglos en Numpy? -- Ventajas de los Arreglos
+Diapositiva 2: Crear Arreglos Numpy -- Funciones de Creación de Arreglos -- Crear Arreglos a partir de Listas
+Diapositiva 3: Operaciones con Arreglos Numpy -- Operaciones de Comparación -- Operaciones Arrimadas
+Diapositiva 4: Ventajas de los Arreglos Numpy -- Almacenar Datos de Forma Eficiente -- Operaciones Más Rápidas

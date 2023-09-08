@@ -12,7 +12,7 @@ def gen_presentacion(prs, pos, titulo, contenido):
         title.text = "Numpy y Matrices"
         subtitle.text = "Grupo 4"
     
-    else:
+    elif pos == 1:
         bullet_slide_layout = prs.slide_layouts[1]
         slide = prs.slides.add_slide(bullet_slide_layout)
         shapes = slide.shapes
@@ -25,7 +25,22 @@ def gen_presentacion(prs, pos, titulo, contenido):
         tf = body_shape.text_frame
         tf.text = contenido
 
+    else:
+        bullet_slide_layout = prs.slide_layouts[1]
+        slide = prs.slides.add_slide(bullet_slide_layout)
+        shapes = slide.shapes
+
+        title_shape = shapes.title
+        body_shape = shapes.placeholders[1]
+
+        title_shape.text = titulo
+
+        tf = body_shape.text_frame.paragraphs[0]
+        tf.text = contenido
+        tf.level = 2
+
     prs.save("clase.pptx")
+
 
 def gen_img(prs, img_path):
     blank_slide_layout = prs.slide_layouts[6]
