@@ -4,12 +4,19 @@ from services.powerpoint import *
 from services.promt import *
 from pptx import Presentation
 from time import sleep
+from retry import retry
 import openai
 import re
 
-if __name__ == "__main__":
+def chomp(x):
+    if x.startswith("\n\n"): return x[2:]
+    if x.startswith("\n"): return x[1:]
+    return x
 
-    API_KEY = ""  # Ingresar API_KEY
+@retry(tries=5)
+def aplicacion():
+
+    API_KEY = "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"  # Ingresar API_KEY
     openai.api_key = API_KEY
 
     # Pedirle al GPT que cree las diapositivas con un formato
@@ -55,11 +62,14 @@ if __name__ == "__main__":
 
     # Ejercicios
     ejercicio1, explicacion1 = create_ej("./ejercicio1.png")
+    ejercicio1 = chomp(ejercicio1)
     gen_presentacion(prs, 2, 'Ejercicio 1', ejercicio1)
     gen_img(prs, "./ejercicio1.png")
     ejercicio2, explicacion2 = create_ej("./ejercicio2.png")
+    ejercicio2 = chomp(ejercicio2)
     gen_presentacion(prs, 2, 'Ejercicio 2', ejercicio2)
     gen_img(prs, "./ejercicio2.png")
+
     # Cargar Presentacion
     init_presentetation("clase.pptx")
     for promt in promts:
@@ -85,3 +95,6 @@ if __name__ == "__main__":
     sleep(1)
     text_to_speech("Con eso terminamos la clase. Muchas gracias.")
     end_presentation()
+
+if __name__ == "__main__":
+    aplicacion()

@@ -13,7 +13,8 @@ def create_ej(filename: str) -> (str, str):
         "El ejercicio debe ser de crear arreglos con np.array, np.random, np.zeros o np.reshape, y realizar varias "
         "operaciones entre arreglos (suma, resta, multiplicacion), reshape, etc. Utiliza el siguiente formato: Ejercicio: "
         "aqui va el ejercicio\nPregunta: aqui va la pregunta\nSolución: aqui va la solucion (codigo)\nSalida: aqui va la "
-        "salida\nExplicaciòn: aqui va la explicacion. No pongas comentarios dentro del codigo")
+        "salida\nExplicaciòn: aqui va la explicacion. No pongas comentarios dentro del codigo. Por ejemplo, no debes "
+        "poner:\na + b #Sumo dos arreglos\nDeberia ser solo el codigo, no comentario, así:\na+b")
     response = ejercicios(gpt_prompt)
 
     ejercicio = re.split("Soluci[óo]n:", response, flags=re.IGNORECASE)
